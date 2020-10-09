@@ -18,51 +18,50 @@ int prevY;
 int panangle = 90;
 int tiltangle = 90;
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
   servoVer.attach(10); //Attach Vertical Servo to Pin 5
   servoHor.attach(9); //Attach Horizontal Servo to Pin 6
   servoVer.write(90);
   servoHor.write(90);
-}
-
-void Pos() {
-  if(prevX != x || prevY != y)
-
-  {
-    
-    int servoX = map(x, 0, 848, 140, 40);
-    int servoY = map(y, 0, 480, 40, 140);
-
-    servoX = min(servoX, 40);
-    servoX = max(servoX, 140);
-    servoY = min(servoY, 40);
-    servoY = max(servoY, 140);
-    
-    servoHor.write(servoX);
-    servoVer.write(servoY);
-  }
-}
-
-void Demo() {
-
-  servoHor.write(40);
-  delay(100);
-  //servoHor.write(140);
-
-  servoVer.write(40);
   }
 
-    //###############
-    //#my camera size is 848,480
-    //##################
-    //if the face is on the right side of the screen, position x >= 424 then pan_angle -- 
-    //if the face is on the left side (position 0 <= x < 424) then pan_angle ++
-    //
-    //if the face is in the upper part 0 <= y < 240) tilt up tiltangle--
-    //if the face is in the lower part 0 <= y < 240) tilt down tiltangle++
-    //
+// void Pos() {
+//   if(prevX != x || prevY != y)
+
+//   {
+    
+//     int servoX = map(x, 0, 848, 140, 40);
+//     int servoY = map(y, 0, 480, 40, 140);
+
+//     servoX = min(servoX, 40);
+//     servoX = max(servoX, 140);
+//     servoY = min(servoY, 40);
+//     servoY = max(servoY, 140);
+    
+//     servoHor.write(servoX);
+//     servoVer.write(servoY);
+//     }
+//   }
+
+// void Demo() {
+
+//   servoHor.write(40);
+//   delay(100);
+//   //servoHor.write(140);
+
+//   servoVer.write(40);
+//   }
+
+//     //###############
+//     //#my camera size is 848,480
+//     //##################
+//     //if the face is on the right side of the screen, position x >= 424 then pan_angle -- 
+//     //if the face is on the left side (position 0 <= x < 424) then pan_angle ++
+//     //
+//     //if the face is in the upper part 0 <= y < 240) tilt up tiltangle--
+//     //if the face is in the lower part 0 <= y < 240) tilt down tiltangle++
+//     //
 
 void Mover() {
 
@@ -94,12 +93,9 @@ void Mover() {
     tiltangle = min(tiltangle, 140);    
     servoHor.write(panangle);
     servoVer.write(tiltangle);
-  }
+    }
 
-
-
-void loop()
-{
+void loop() {
   if(Serial.available() > 0)
   {
     if(Serial.read() == 'X')
@@ -121,8 +117,8 @@ void loop()
       // servoHor.write(panangle);
       // servoVer.write(tiltangle);  
       Serial.read();
+      }
     }
   }
-}
   
 
