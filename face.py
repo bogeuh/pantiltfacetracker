@@ -21,7 +21,8 @@ cap = cv2.VideoCapture(0)
 print("Getting camera image...")
 #Read the captured image, convert it to Gray image and find faces
 while 1:
-
+# ret returns true or false if an image was detected or not
+#so while true:
     ret, img = cap.read()
     cv2.namedWindow('img', cv2.WINDOW_NORMAL)
     ###############
@@ -41,8 +42,11 @@ while 1:
     cv2.line(img,(424,20),(424,230),(0,0,255),3)
     cv2.line(img,(424,250),(424,460),(0,0,255),3)
 
+##################
+##detect faces
+##################
     gray  = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, 1.3)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
 #detect the face and make a rectangle around it.
     for (x,y,w,h) in faces:
